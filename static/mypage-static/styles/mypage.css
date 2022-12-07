@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: 'MonoplexKR-Regular';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2') format('woff2');
@@ -22,7 +21,7 @@
   text-align: center;
   margin-top: 50px;
   font-size: 1.5rem;
-  
+
 }
 
 .password {
@@ -65,7 +64,7 @@
 
 input {
   width: 200px;
-  height: 25px;  
+  height: 25px;
 }
 
 input[type="text"] {
@@ -79,12 +78,11 @@ input[type="text"]:focus {
 }
 
 .account_btn {
-  width: 300px;
+  width: 100%;
   margin-top: 100px;
-  margin-left: 715px;
+  text-align: center;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 }
 
 .account_btn button {
@@ -96,12 +94,11 @@ input[type="text"]:focus {
   font-size: 1.2rem;
   color: aliceblue;
   border-radius: 7px;
+  margin-right: 20px;
+  margin-left: 50px;
+
 }
 
 .account_btn button:hover {
   background-color: mediumseagreen;
 }
-
-
-
-

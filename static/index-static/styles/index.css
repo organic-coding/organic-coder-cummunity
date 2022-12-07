@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -11,158 +12,151 @@
   font-style: normal;
 }
 
- body {
-    margin: 0;
-    background-color: floralwhite;
-  }
+body {
+  margin: 0;
+  background-color: floralwhite;
+}
 
-  a {
-    text-decoration: none;
-    color: azure;
-  }
+a {
+  text-decoration: none;
+  color: azure;
+}
 
+.navbar {
+  font-family: KOTRA_BOLD-Bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkslategray;
+  padding: 8px 130px;
+
+}
+
+.navbar_logo {
+  font-size: 37px;
+  color: aliceblue;
+  display: flex;
+}
+
+.navbar_logo i {
+  font-size: 3rem;
+  color: darkseagreen;
+}
+
+.navbar_menu {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  padding-right: 160px;
+  font-size: 1.3rem;
+}
+
+.navbar_menu li {
+  padding: 8px 20px;
+}
+
+.navbar_menu li:hover {
+  background-color: mediumseagreen;
+  border-radius: 4px;
+}
+
+.navbar_button button {
+  font-family: KOTRA_BOLD-Bold;
+  font-size: 1.1rem;
+  background-color: rgba(0, 0, 0, 0);
+  color: aliceblue;
+  border: none;
+  margin-top: 40px;
+}
+
+.navbar_button button:hover {
+  background-color: mediumseagreen;
+  border-radius: 4px;
+}
+
+.body_wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.body_content {
+  margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+.footer {
+  width: 100%;
+  height: 50px;
+  margin-top: -100px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: darkslategray;
+}
+
+.coder_name {
+  font-family: Pretendard-Regular;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  font-size: 1rem;
+  color: aliceblue;
+
+}
+
+.footer li {
+  padding: 8px 20px;
+}
+
+
+@media screen and (max-width: 768px) {
   .navbar {
-    font-family: KOTRA_BOLD-Bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: darkslategray;
-    padding: 8px 130px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
 
   }
 
   .navbar_logo {
-    font-size: 37px;
-    color: aliceblue;
-    display: flex;
+    font-size: 20px;
   }
 
   .navbar_logo i {
-    font-size: 3rem;
-    color: darkseagreen;
+    font-size: 30px;
   }
 
   .navbar_menu {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-    padding-right: 160px;
-    font-size: 1.3rem;
-  }
-  .navbar_menu li {
-    padding: 8px 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
-  .navbar_menu li:hover {
-    background-color: mediumseagreen;
-    border-radius: 4px;
+  .navbar_menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar_button {
+    padding-left: 140px;
   }
 
   .navbar_button button {
-    font-family: KOTRA_BOLD-Bold;
-    font-size: 1.1rem;
-    background-color: rgba(0,0,0,0);
-    color: aliceblue;
-    border: none;
-    margin-top: 40px;
-  }
-
-  .navbar_button button:hover {
-    background-color: mediumseagreen;
-    border-radius: 4px;
-  }
-
-  .body_wrap {
-    min-height: 100%;
-    position: relative;
-    padding-bottom: 100px;
-  }
-
-  .body_content {
-    margin-top: 100px;
-    padding-bottom: 100px;
+    justify-content: center;
+    align-items: center;
   }
 
   .footer {
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: 50px;
-    margin-top: -100px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: darkslategray;
-  }
-
-  .coder_name {
-    font-family: Pretendard-Regular;
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    font-size: 1rem;
-    color: aliceblue;
-
   }
 
   .footer li {
-    padding: 8px 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
   }
 
-
-  @media screen and (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 8px 24px;
-      
-    }
-    
-    .navbar_logo {
-      font-size: 20px;
-    }
-
-    .navbar_logo i {
-      font-size: 30px;
-    }
-
-    .navbar_menu {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    .navbar_menu li {
-      width: 100%;
-      text-align: center;
-    }
-
-    .navbar_button {
-      padding-left: 140px;
-    }
-
-    .navbar_button button {
-      justify-content: center;
-      align-items: center;
-    }
-
-    .footer {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    .footer li {
-      width: 100%;
-      text-align: center;
-      font-size: 10px;
-    }
-
-  }
-
-
-
-
-
-
-
-
+}
