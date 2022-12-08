@@ -55,20 +55,21 @@
       <div class="title">
         My Page
       </div>
+    <form action="/mypage/modify" method="POST">
       <div class="user_id">
-        아이디 <input class="test" id="login_id" type="text" value="">
+        아이디 <input class="test" id="login_id" type="text" value="" readonly>
       </div>
 
       <div class="password">
-        비밀번호 <input id="pwd" type="text" value="">
+        비밀번호 <input id="pwd" type="password" value="">
       </div>
 
       <div class="email">
-        이메일 <input id="user_email" type="text" value="">
+        이메일 <input id="user_email" type="text" value="" readonly>
       </div>
-
+    
       <div class="name">
-        실명 <input id="user_name" type="text" value="">
+        실명 <input id="user_name" type="text" value="" readonly>
       </div>
 
       <div class="nickname">
@@ -78,7 +79,7 @@
       <div class="account_btn">
 
         <div class="correct_btn">
-          <button class="correct">수정</button>
+          <button onclick="show_mypage()" type="button" class="correct">수정</button>
         </div>
         <div class="cancle_btn">
           <button class="cancle" onclick="location.href='/'">취소</button>
@@ -87,10 +88,8 @@
           <button class="delete">계정삭제</button>
 
         </div>
-
-
-      </div>
-
+       </div>      
+    </form>
 
     </div>
 

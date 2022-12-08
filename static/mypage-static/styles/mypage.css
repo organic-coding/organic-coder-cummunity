@@ -77,6 +77,16 @@ input[type="text"]:focus {
   border: 4px solid mediumseagreen;
 }
 
+input[type="password"] {
+  border: 3px solid #105C57;
+  border-radius: 5px;
+
+}
+
+input[type="password"]:focus {
+  border: 4px solid mediumseagreen;
+}
+
 .account_btn {
   width: 100%;
   margin-top: 100px;

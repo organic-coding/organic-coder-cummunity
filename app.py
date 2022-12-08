@@ -31,7 +31,27 @@ def show_mypage():
   print(list)
 
   return jsonify({'msg': list})
+
+@app.route('/mypage/modify', methods=["POST"])
+def modify():
+  # print(request.get_json())
+  # pwd = request.get_json().get('pwd')
+  # nick = request.get_json().get('nick')
+  # user_id = request.get_json().get('login_id') 
+
+  pwd = request.form['pwd']
+  nick = request.form['nick']
+  user_id = request.form['login_id']
  
+  sql = f'update user set login_pwd = "{pwd}", user_nick = "{nick}" where login_id like "{user_id}"'
+  app.database.execute(sql) 
+  
+  userDetails = app.database.execute(f'select * from user where login_id like "{user_id}"').fetchone()
+
+  return jsonify(list(userDetails))
+
+
+   
 
 if __name__ == '__main__':
   app.config.from_pyfile("config.py")
