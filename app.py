@@ -214,16 +214,23 @@ def _get_users():
 #     print(type(json_rows), json_rows)
 #     return json_rows
 
-@app.route('.mypage/modify', methods=["POST"])
+@app.route('/mypage/modify', methods=["POST"])
 def modify():
-    data = request.get_json()
-    print(data)
-    pwd = request.get_json().get('pwd')
-    nick = request.get_json().get('nick')
-    login_id = request.get_json().get('login_id')
+    # data = request.get_json()
+    # print(data)
+    # pwd = request.get_json().get('pwd')
+    # nick = request.get_json().get('nick')
+    # login_id = request.get_json().get('login_id')
+    pwd = request.form['pwd']
+    nick = request.form['nick']
+    user_id = request.form['login_id']
 
-    sql = f'update user set pwd = {pwd}, nick = {nick}, where login_id = {login_id}'
+    sql = f'update user set login_pwd = "{pwd}", user_nick = "{nick}" where login_id like "{login_id}"'
     app.database.execute(sql)
+
+    sql = f'select * from user where login_id like "{login_id}"'
+    user_details = app.database.execute(sql).fetchone()
+    return jsonify(list(user_details))
     return jsonify({'success':'update complete!', 'fail': 'something went wrong'})
 
 

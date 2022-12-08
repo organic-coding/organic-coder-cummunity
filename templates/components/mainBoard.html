@@ -131,17 +131,21 @@
     $.ajax({
         type: "POST",
         url: "/mypage/modify",
-        data: JSON.stringify({
+        data: {
             login_id: $("#id").val(),
             pwd: $("#pwd").val(),
             nick: $("#user_nick").val()
-        }),
-        contentType: "application/json; charset=utf-8"
+        },
+        {#contentType: "application/json; charset=utf-8",#}
         success: function(response) {
-            console.log(response['success'])
+            console.log(response)
+            show_mypage()
+
+            console.log(typeof())
+            $("#id").attr('value', response[])
         }
         fail: function(response) {
-            alert(response['fail'])
+            {#alert(response['fail'])#}
         }
     })
 
