@@ -128,6 +128,23 @@
 </div>
 
 <script>
+    $.ajax({
+        type: "POST",
+        url: "/mypage/modify",
+        data: JSON.stringify({
+            login_id: $("#id").val(),
+            pwd: $("#pwd").val(),
+            nick: $("#user_nick").val()
+        }),
+        contentType: "application/json; charset=utf-8"
+        success: function(response) {
+            console.log(response['success'])
+        }
+        fail: function(response) {
+            alert(response['fail'])
+        }
+    })
+
     {#const user_tbody = document.querySelector('#users tbody');#}
     {#let tr = ``#}
     {#axios.get('/user')#}

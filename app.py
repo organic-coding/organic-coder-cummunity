@@ -214,6 +214,18 @@ def _get_users():
 #     print(type(json_rows), json_rows)
 #     return json_rows
 
+@app.route('.mypage/modify', methods=["POST"])
+def modify():
+    data = request.get_json()
+    print(data)
+    pwd = request.get_json().get('pwd')
+    nick = request.get_json().get('nick')
+    login_id = request.get_json().get('login_id')
+
+    sql = f'update user set pwd = {pwd}, nick = {nick}, where login_id = {login_id}'
+    app.database.execute(sql)
+    return jsonify({'success':'update complete!', 'fail': 'something went wrong'})
+
 
 # login 페이지 접속(GET) 처리와, "action=/login" 처리(POST)처리 모두 정의
 @app.route('/login', methods=['GET', 'POST'])
