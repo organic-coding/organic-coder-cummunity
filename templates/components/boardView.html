@@ -1,0 +1,48 @@
+<style>
+    {#*{#}
+    {#  font-family: noto serif kr, serif;#}
+    {# }#}
+
+    #body_wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    input {
+        width: 600px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        height: 30px;
+    }
+
+    textarea {
+        width: 600px;
+    }
+
+</style>
+
+<div id="body_wrap">
+
+    <div class="mypost">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" placeholder="제목" value="{{ post[1] }}"
+                   style="width: 600px;">
+        </div>
+    </div>
+    <div class="form-floating">
+    <textarea class="form-control" placeholder="Leave a comment here comment"
+              style="height: 500px; width: 600px;">"{{ post[2] }}"</textarea>
+    </div>
+    <div id="board-view-buttons">
+        <a class="btn btn-outline-dark" href="{{ url_for('board_modify', board_id=post[0]) }}" role="button">수정</a>
+        <button href="{{ url_for('board_modify', board_id=post[0]) }}">수정</button>
+      <button >삭제</button>
+
+    </div>
+
+</div>
+
+

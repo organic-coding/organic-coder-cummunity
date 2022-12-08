@@ -1,8 +1,10 @@
+from urllib.parse import quote_plus
+
 db = {
     # 데이터베이스에 접속할 사용자 아이디
     'user': '청일점',
     # 사용자 비밀번호
-    'password': 'cjddlfwja',
+    'password': quote_plus('cjddlfwja'),
     # 접속할 데이터베이스의 주소 (같은 컴퓨터에 있는 데이터베이스(로컬)에 접속할 땐 '127.0.0.1')
     'host': '192.168.0.17', # 혹시 공인으로 121.154.246.204 이거?
     # 관계형 데이터베이스는 주로 3306 포트를 통해 연결됨

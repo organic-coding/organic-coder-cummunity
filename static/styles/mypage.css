@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'MonoplexKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.title {
+  font-family: 'MonoplexKR-Regular';
+  color: #5E5958;
+  font-weight: bold;
+  font-size: 5rem;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.user_id {
+  font-family: 'MonoplexKR-Regular';
+  font-weight: bold;
+  color: #5E5958;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.5rem;
+
+}
+
+.password {
+  font-family: 'MonoplexKR-Regular';
+  font-weight: bold;
+  color: #5E5958;
+  text-align: center;
+  margin-top: 30px;
+  margin-right: 26px;
+  font-size: 1.5rem;
+}
+
+.email {
+  font-family: 'MonoplexKR-Regular';
+  font-weight: bold;
+  color: #5E5958;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+.name {
+  font-family: 'MonoplexKR-Regular';
+  font-weight: bold;
+  color: #5E5958;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 26px;
+  font-size: 1.5rem;
+}
+
+.nickname {
+  font-family: 'MonoplexKR-Regular';
+  font-weight: bold;
+  color: #5E5958;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+input {
+  width: 200px;
+  height: 25px;
+}
+
+input[type="text"] {
+  border: 3px solid #105C57;
+  border-radius: 5px;
+
+}
+
+input[type="text"]:focus {
+  border: 4px solid mediumseagreen;
+}
+
+input[type="password"] {
+  border: 3px solid #105C57;
+  border-radius: 5px;
+
+}
+
+input[type="password"]:focus {
+  border: 4px solid mediumseagreen;
+}
+
+.account_btn {
+  width: 100%;
+  margin-top: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.account_btn button {
+  font-family: 'MonoplexKR-Regular';
+  border: 0;
+  height: 35px;
+  text-align: center;
+  background-color: darkslategray;
+  font-size: 1.2rem;
+  color: aliceblue;
+  border-radius: 7px;
+  margin-right: 20px;
+  margin-left: 50px;
+
+}
+
+.account_btn button:hover {
+  background-color: mediumseagreen;
+}

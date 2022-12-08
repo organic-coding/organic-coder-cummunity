@@ -102,10 +102,22 @@ def categoryBoardLayout():
                            chunk_start=chunk_start,
                            chunk_end=chunk_end)
 
+
+# -----------------------------------------------------
+# 재원님 - 게시글 보기!
+# @app.route('/postView-layout')
+# def postView():
+#     index = request.args.get("index", 1, type=int)
+#     post = boardView(index)
+#     return render_template('index.html', component_name='postView', post=post)
+
 @app.route('/postView-layout')
 def postView():
     index = request.args.get("index", 1, type=int)
     post = boardView(index)
+    print(post)
+    # title = post[1]
+    # content = post[2]
     return render_template('index.html', component_name='postView', post=post)
 
 # GET specific comment
@@ -126,23 +138,87 @@ def boardView(id):
     data = text('''
                     UPDATE board 
                     SET view = view + 1
+                    
                     WHERE id = :index;
                     ''')
     app.database.execute(data, placeholder)
-
+    return list(result)
     # board = list(result)
-    board = {
-        'id': result[0],
-        'title': result[1],
-        'content': result[2],
-        'user_nick': result[3],
-        'view': result[4]
-    }
-    return jsonify(board)
+    # board = {
+    #     'id': result[0],
+    #     'title': result[1],
+    #     'content': result[2],
+    #     'user_nick': result[3],
+    #     'view': result[4]
+    # }
+    # return jsonify(board)
 
+#--------------------------------------
+
+#----------------------------------------
+# 기민님
+# 게시글 작성 페이지
 @app.route('/postWirte-layout')
-def postWrite():
-    return render_template('index.html', component_name='postWrite')
+def write():
+    return render_template('index.html', component_name='boardWrite')
+
+@app.route('/write', methods=['POST'])
+def board_write():
+    title = request.form['title']
+    content = request.form['content']
+    sql = text('''
+                INSERT INTO board (title,content)
+                VALUES (:title, :content);
+                ''')
+    placeholder = {'title': title, 'content': content}
+    app.database.execute(sql, placeholder)
+
+    return "success"  #등록 버튼 누른 후 보여지는 메세지 등록 버튼을 누르면 저장과 함계 게시글 목록으로 이동
+
+# 게시글 수정 페이지
+@app.route('/boardModify-layout')
+def show_board_modify():
+    return render_template('index.html', component_name='boardModify')
+
+@app.route('/board_modify', methods=['GET', 'POST'])
+def board_modify():
+    # board_id = 1  #####
+    board_id = request.args.get('board_id', 1, type=int)
+    if request.method == 'GET':
+        sql = text('''
+                    SELECT *
+                    FROM board
+                    WHERE id = :board_id;
+                    ''')
+        placeholder = {'board_id': board_id}
+        print(board_id)
+        print(sql)
+        # app.database.execute(sql, placeholder)
+        board_post = list(app.database.execute(sql, placeholder).fetchone())
+        title = board_post[1]
+        content = board_post[2]
+        print(title, content)
+        return render_template('index.html', component_name='boardModify', title=title, content=content, board_id=board_id)
+
+
+    else: # methods="post"일 때 작동 코드
+        title = request.form['title']
+        content = request.form['content']
+        board_id = request.form['board_id']
+        sql = text('''
+                    UPDATE board
+                    SET title = :title, content = :content
+                    where id = :board_id;
+                    ''')
+
+        placeholder = {'title': title, 'content': content, 'board_id': board_id}
+
+        app.database.execute(sql, placeholder)
+
+        return jsonify({'msg':'수정 완료'})
+
+#-----------------------
+
 
 @app.route('/images-layout')
 def imagesLayout():
@@ -214,24 +290,24 @@ def _get_users():
 #     print(type(json_rows), json_rows)
 #     return json_rows
 
-@app.route('/mypage/modify', methods=["POST"])
-def modify():
-    # data = request.get_json()
-    # print(data)
-    # pwd = request.get_json().get('pwd')
-    # nick = request.get_json().get('nick')
-    # login_id = request.get_json().get('login_id')
-    pwd = request.form['pwd']
-    nick = request.form['nick']
-    login_id = request.form['login_id']
-
-    sql = f'update user set login_pwd = "{pwd}", user_nick = "{nick}" where login_id like "{login_id}"'
-    app.database.execute(sql)
-
-    sql = f'select * from user where login_id like "{login_id}"'
-    user_details = app.database.execute(sql).fetchone()
-    return jsonify(list(user_details))
-    return jsonify({'success':'update complete!', 'fail': 'something went wrong'})
+# @app.route('/mypage/modify', methods=["POST"])
+# def modify():
+#     # data = request.get_json()
+#     # print(data)
+#     # pwd = request.get_json().get('pwd')
+#     # nick = request.get_json().get('nick')
+#     # login_id = request.get_json().get('login_id')
+#     pwd = request.form['pwd']
+#     nick = request.form['nick']
+#     login_id = request.form['login_id']
+#
+#     sql = f'update user set login_pwd = "{pwd}", user_nick = "{nick}" where login_id like "{login_id}"'
+#     app.database.execute(sql)
+#
+#     sql = f'select * from user where login_id like "{login_id}"'
+#     user_details = app.database.execute(sql).fetchone()
+#     return jsonify(list(user_details))
+#     return jsonify({'success':'update complete!', 'fail': 'something went wrong'})
 
 
 # login 페이지 접속(GET) 처리와, "action=/login" 처리(POST)처리 모두 정의
@@ -265,6 +341,44 @@ def logout():
     session.pop('userid', None)
     return redirect('/')
 
+# @app.route('/write', methods=['POST'])
+# def board_write():
+#     title = request.form['title']
+#     content = request.form['content']
+#     sql = text('''
+#                 INSERT INTO board (title, content)
+#                 VALUES (:title, :content);
+#                 ''')
+#     placeholder = {'title': title, 'content': content}
+#     app.database.execute(sql, placeholder)
+#     return "success"
+
+# @app.route('/board_modify', methods=['GET', 'POST'])
+# def board_modify():
+#     board_id = request.args.get('id')
+#     if request.method == 'GET':
+#         sql = text('''
+#                     SELECT *
+#                     FROM board
+#                     WHERE id = :board_id;
+#                     ''')
+#         placeholder = {'board_id': board_id}
+#         board_post = list(app.database.execute(sql, placeholder).fetchone())
+#         title = board_post[1]
+#         content = board_post[2]
+#         return render_template('boardModify.html', title=title, content=content, board_id=board_id)
+#     else: # methods="post"
+#         title = request.form['title']
+#         content = request.form['content']
+#         board_id = request.form['board_id']
+#         sql = text('''
+#                     UPDATE board
+#                     SET title = :title, content = :content
+#                     WHERE id = :board_id;
+#                     ''')
+#         placeholder = {'title': title, 'content': content, 'board_id': board_id}
+#         app.database.execute(sql, placeholder)
+#         return redirect('url')
 
 def _get_posts(request): # posts 테이블로 바꿀 것. users의 닉네임을 Join해서 가져와야 한다. # join문도 잘 가져오는 것 확인함.
     category = request.args.get("category", 1, type=int) # 1, 2, 3 혹은 4를 받을 것을 예상한다.
@@ -308,6 +422,69 @@ def _get_mainBoard_posts(category):
     placeholder = {'category': category}
     result = app.database.execute(data, placeholder).fetchmany(5)
     return result
+
+
+#-------------------------
+# 태연님
+@app.route('/mypage')
+def mypage():
+  return render_template('mypage.html')
+
+# 회원 정보 불러오기
+@app.route('/mypage/userinfo', methods=["GET"])
+def show_mypage():
+    sql = "SELECT login_id, login_pwd, email, user_name, user_nick FROM user"
+
+    rows = app.database.execute(sql)
+    list = []
+    for info in rows:
+        temp = {
+            'id': info[0],
+            'pwd': info[1],
+            'email': info[2],
+            'name': info[3],
+            'nick': info[4]
+        }
+        list.append(temp)
+    print(list)
+
+    return jsonify({'msg': list})
+
+
+# 회원 정보 수정하기
+@app.route('/mypage/modify', methods=["POST"])
+def modify():
+    # print(request.get_json())
+    # pwd = request.get_json().get('pwd')
+    # nick = request.get_json().get('nick')
+    # user_id = request.get_json().get('login_id')
+    print(request.form)
+    pwd = request.form['pwd']
+    nick = request.form['nick']
+    login_id = request.form['login_id']
+
+    sql = f'update user set login_pwd = "{pwd}", user_nick = "{nick}" where login_id like "{login_id}"'
+    app.database.execute(sql)
+
+    userDetails = app.database.execute(f'select * from user where login_id like "{login_id}"').fetchone()
+
+    return jsonify(list(userDetails))
+
+
+# 회원 정보 삭제
+@app.route('/mypage/delete/<login_id>', methods=["DELETE"])
+def delete(login_id):
+    # print(request.form)
+    # login_id = request.form['login_id']
+    # pwd = request.form['pwd']
+    # email = request.form['email']
+    # name = request.form['name']
+    # nick = request.form['nick']
+
+    sql = f'delete from user where login_id like "{login_id}"'
+    app.database.execute(sql)
+
+    return jsonify({'msg': '탈퇴 완료'})
 
 
 # @app.route('/list')

@@ -19,6 +19,8 @@
     <script defer src="..\static\js\index.js"></script>
     <script src="https://kit.fontawesome.com/1bf0af30eb.js" crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -36,10 +38,12 @@
 {##}
 {#        <div>#}
             <section id="mainSection">
-                {% if component_name == 'groups' %}
-                    {% include "components/groups.html" %}
-                {% elif component_name == 'mainBoard' %}
+{#                {% if component_name == 'groups' %}#}
+{#                    {% include "components/groups.html" %}#}
+                {% if component_name == 'mainBoard' %}
                     {% include "components/mainBoard.html" %}
+                    <!-- footer -->
+                    {% include "components/footer.html" %}
                 {% elif component_name == 'category1' %}
                     {% include "components/category1.html" %}
                 {% elif component_name == 'category2' %}
@@ -49,9 +53,11 @@
                 {% elif component_name == 'category4' %}
                     {% include "components/category4.html" %}
                 {% elif component_name == 'postView' %}
-                    {% include "components/search.html" %}
-                {% elif component_name == 'photos' %}
-                    {% include "components/photos.html" %}
+                    {% include "components/boardView.html" %}
+                {% elif component_name == 'boardWrite' %}
+                    {% include "components/write.html" %}
+                {% elif component_name == 'boardModify' %}
+                    {% include "components/board_modify.html" %}
                 {% elif component_name == 'signup' %}
                     {% include "components/signup.html" %}
                 {% elif component_name == 'login' %}
@@ -67,8 +73,7 @@
 {##}
 {#</div>#}
 
-<!-- footer -->
-{% include "components/footer.html" %}
+
 
 </body>
 

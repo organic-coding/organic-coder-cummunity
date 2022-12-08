@@ -1,0 +1,109 @@
+
+{#<head>#}
+{#    <link rel="stylesheet" href="/static/write.css">#}
+{#    <title>유기농코더</title>#}
+{#    <script>#}
+{#        $(document).ready(function () {#}
+{#            show_write()#}
+{#        })#}
+{#        function complete() {#}
+{#            $.ajax({#}
+{#                type: "POST",#}
+{#                url: "/board_modify",#}
+{#                data: {#}
+{#                    'title': $("#title").val(),#}
+{#                    'content': $("#content").val(),#}
+{#                    'board_id': $("#board_id").val()#}
+{#                },#}
+{#                success: function (response) {#}
+{#                    alert(response['msg'])#}
+{#                    window.location.reload()#}
+{#                }#}
+{#            })#}
+{#        }#}
+{#    </script>#}
+{#</head>#}
+{##}
+{#<body>#}
+
+<div id="board-modify">
+
+<div class="board_wrap">
+    <div class="board_title">
+        <strong style="color: darkslategray; font-size: 30px;">게시물</strong>
+        <p style="color: darkslategray; font-size: 10px;">싱싱하고 산뜻하게 이용해주세요</p>
+    </div>
+    <div class="board_write_wrap">
+
+<!--        <form action='/board_modify' method="post">-->
+         <form>
+            <div class="board_write">
+                <div class="title">
+                    <label>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="title" id="title" placeholder="제목을 입력해주세요." value="{{title}}"></dd>
+                    </label>
+
+                </div>
+
+                <!-- <div class="filebox">
+                    <label for="file">업로드</label>
+                    <input type="file" id="file">
+
+                    <input class="upload-name" value="파일선택">
+                </div> -->
+
+
+                <!--                <div class="info">-->
+                <!--                    <label>-->
+                <!--                        <dt>upload</dt>-->
+                <!--                        <input type="file" id="file">-->
+                <!--                        <input class="upload-name" value="첨부파일" placeholder="첨부파일">-->
+                <!--                    </label>-->
+                <!--                </div>-->
+                <input type="hidden" name="board_id" id="board_id" value="{{board_id}}" />
+                <div class="cont">
+                    <textarea placeholder="내용을 입력해주세요." name="content" id="content">{{content}}</textarea>
+                </div>
+            </div>
+
+
+            <!--            <div class="bt_wrap">-->
+
+            <!--            </div>-->
+
+            <div class="bt_wrap">
+                <input type='button' onclick="complete()" class="post" value="수정">
+            </div>
+
+            <div class="bt_wrap">
+                <button onclick="history.back()" style="color: floralwhite;">목록</button>
+                <!--                <button><a href="##작성자가 쓴 게시물 페이지로??아니면 글목록페이지주소" class="on">수정</a></button>-->
+                <!--                <button><a href="#글목록페이지주소" class="close">취소</a></button>-->
+            </div>
+
+
+        </form>
+    </div>
+
+</div>
+</div>
+<script>
+
+    function complete() {
+        $.ajax({
+            type: "POST",
+            url: "/board_modify",
+            data: {
+                'title': $("#title").val(),
+                'content': $("#content").val(),
+                'board_id': $("#board_id").val()
+            },
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        })
+    }
+</script>
+{#</body>#}

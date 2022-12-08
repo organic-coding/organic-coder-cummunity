@@ -1,0 +1,53 @@
+<link rel="stylesheet" herf="/static/styles/write.css">
+<div id="board-write">
+
+<div class="board_wrap">
+    <div class="board_title">
+        <strong style="color: darkslategray; font-size: 30px;">게시물</strong>
+        <p style="color: darkslategray; font-size: 10px;">싱싱하고 산뜻하게 이용해주세요</p>
+    </div>
+    <div class="board_write_wrap">
+
+        <form action='/write' method="post">
+            <div class="board_write">
+                <div class="title">
+                    <label>
+                        <dt>제목</dt>
+                        <dd><input type="text" name="title" id="title" placeholder="제목을 입력해주세요."></dd>
+                    </label>
+                </div>
+
+                <!-- <div class="filebox">
+                    <label for="file">업로드</label>
+                    <input type="file" id="file">
+
+                    <input class="upload-name" value="파일선택">
+                </div> -->
+
+
+                <!--                <div class="info">-->
+                <!--                    <label>-->
+                <!--                        <dt>upload</dt>-->
+                <!--                        <input type="file" id="file">-->
+                <!--                        <input class="upload-name" value="첨부파일" placeholder="첨부파일">-->
+                <!--                    </label>-->
+                <!--                </div>-->
+                <div class="cont">
+                    <textarea placeholder="내용을 입력해주세요." name="content" id="content"></textarea>
+                </div>
+            </div>
+
+
+            <div class="bt_wrap">
+                <input type='submit' class="post" value="등록">
+                <input type='submit' class="close" value="취소">
+                <!--                <button><a href="##작성자가 쓴 게시물 페이지로??아니면 글목록페이지주소" class="on">등록</a></button>-->
+                <!--                <button><a href="#글목록페이지주소" class="close">취소</a></button>-->
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+</div>
