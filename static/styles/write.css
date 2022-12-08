@@ -110,24 +110,24 @@ margin-right: 10px;
 } */
 
 
-button {
+.board_write_wrap button {
     background-color: darkslategray;
     border-radius: 6px;
     width: 50px;
     height: 30px;
 }
 
-button a {
+.board_write_wrap button a {
     text-decoration: none;
     color: floralwhite;
 
 }
 
-.bt_wrap {
+.board_write_wrap .bt_wrap {
     margin: 10px;
 }
 
-.post {
+.board_write_wrap .post {
     background-color: darkslategray;
     border-radius: 6px;
     width: 50px;
@@ -135,7 +135,7 @@ button a {
     color: floralwhite;
 }
 
-.close {
+.board_write_wrap .close {
     background-color: darkslategray;
     border-radius: 6px;
     width: 50px;

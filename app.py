@@ -1,7 +1,8 @@
 
-from flask import Flask, render_template, request, redirect, session, url_for, jsonify
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify, flash
 from sqlalchemy import create_engine, text
 # mysql-connector-python
+from datetime import timedelta
 
 import math
 import json
@@ -9,7 +10,7 @@ import json
 app = Flask(__name__)
 app.secret_key = "111222333"
 # app.config["SECRET_KEY"] = "abcd" # 예시라 간단한 값으로 지정했지만, 실제로는 이런 단순한 값 사용하면 절대 X
-# app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=30) # 세션유지 시간을 30분으로 지정
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1) # 세션유지 시간을 30분으로 지정
 # => 로그인(세션설정) 기능 구현할 때 이런 것도 있다.
 
 #  튜플에서 딕셔너리로 cursor= db.cursor(pymysql.cursors.DictCursor)
@@ -316,30 +317,34 @@ def login():
     if request.method == 'GET':
         return render_template('index.html', component_name='login')
     else:
-        userid = request.form['user_name']
-        password = request.form['last_name']
-        placeholder = {'userid': userid, 'password': password }
+        login_id = request.form['login_id']
+        password = request.form['login_pwd']
+        placeholder = {'login_id': login_id, 'password': password }
         try:
             sql = text('''
                         SELECT * 
                         FROM user 
-                        WHERE user_name = :userid AND last_name = :password;
+                        WHERE login_id = :login_id AND login_pwd = :password;
                         ''')
             data = app.database.execute(sql, placeholder).fetchone()
             # data = User.query.filter_by(userid=userid, password=password).first()	# ID/PW 조회Query 실행
             if data is not None:	# 쿼리 데이터가 존재하면
-                session['userid'] = userid	# userid를 session에 저장한다.
-                return userid, password
-                # return redirect('/')
+                session['login_id'] = login_id	# userid를 session에 저장한다.
+                # session.permanent = True
+                # print(session)
+                flash(f"로그인 성공! 아이디 {session['login_id']}")
+                return redirect('/')
             else:
-                return '로그인 실패'	# 쿼리 데이터가 없으면 출력
+                flash("회원 정보가 없습니다!")
+                return redirect(url_for('login'))	# 쿼리 데이터가 없으면 출력
         except:
-            return "로그인 실패..."	# 예외 상황 발생 시 출력
+            return "다른 이유로 로그인 실패..."	# 예외 상황 발생 시 출력
 
 @app.route('/logout', methods=['GET'])
 def logout():
-    session.pop('userid', None)
-    return redirect('/')
+    session.pop('login_id', None)
+    flash("안녕히 가세요")
+    return redirect(url_for('login'))
 
 # @app.route('/write', methods=['POST'])
 # def board_write():

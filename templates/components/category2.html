@@ -20,7 +20,14 @@
         <!-- 본문 -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <h1 class="text-center"> 공지사항 </h1>
+                <div class="d-flex justify-content-between align-items-end">
+                    <div class="sort-buttons">
+{#                        <a class="btn btn-outline-dark" href="{{ url_for('categoryBoardLayout', page=chunk_start - 1, category=1) }}" role="button">최신순</a>#}
+{#                        <a class="btn btn-outline-dark" href="{{ url_for('categoryBoardLayout', page=page, category=1, view_sort=true) }}" role="button">조회순</a>#}
+                    </div>
+                    <h1 class="text-center"> 공지사항 </h1>
+                    <a class="btn btn-primary" href="{{ url_for('write') }}" role="button">글쓰기</a>
+                </div>
                 <br>
                 <table class="table table-hover">
                     <thead class="table-dark">
