@@ -223,7 +223,7 @@ def modify():
     # login_id = request.get_json().get('login_id')
     pwd = request.form['pwd']
     nick = request.form['nick']
-    user_id = request.form['login_id']
+    login_id = request.form['login_id']
 
     sql = f'update user set login_pwd = "{pwd}", user_nick = "{nick}" where login_id like "{login_id}"'
     app.database.execute(sql)
