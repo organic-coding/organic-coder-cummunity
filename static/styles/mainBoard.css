@@ -1,0 +1,44 @@
+    #mainBoard {
+        margin: 40px 5% 20px 5%;
+    }
+    #mainBoard .col {
+        /*height: 300px;*/
+        /*margin: 10px 5px 10px 5px;*/
+        margin: 10px auto auto auto;
+    }
+    #mainBoard .my-container {
+        width: 95%;
+        margin: 50px auto 10px auto;
+        /*background-color: dimgray;*/
+    }
+    #mainBoard a {
+        color: black;
+        font-weight: bold;
+    }
+    #mainBoard a:hover {
+        color: #0090f9
+    }
+    #mainBoard h1 {
+        color: #424141;
+        /*color: darkslategray;*/
+    }
+
+    #mainBoard .category-title {
+        height: 80px;
+        background-image: url('../images/background1.jpg');
+        /*background-image: url('C:\Users\USER\Desktop\Sparta\01.5_spartagram_tutors\static\images\background1.jpg');*/
+        background-position: center;
+        background-size: cover;
+
+        align-items: center;
+        /*justify-content: center;*/
+        border-radius: 30px;
+        margin-bottom: 10px;
+    }
+    #mainBoard .category-title:hover {
+        color: #0090f9
+    }
+    #mainBoard .category-title div {
+        margin-left: 50px;
+        margin-bottom: -10px;
+    }

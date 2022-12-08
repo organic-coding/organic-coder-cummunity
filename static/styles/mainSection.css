@@ -1,0 +1,10 @@
+/*@import url("group.css");*/
+@import url("mainBoard.css");
+@import url("categoryBoard.css");
+
+/*#mainSection {*/
+/*    !*height: calc(100vh - 124px);*!*/
+/*    !*height: 100vh - 124px);*!*/
+/*    padding: 2rem;*/
+/*    overflow-y: scroll;*/
+/*}*/

@@ -1,0 +1,83 @@
+
+<div id="category-board">
+<div class="d-flex flex-row">
+    <!-- 사이드바 : 게시판 목록-->
+    <div class="flex-column flex-shrink-1 p-3 text-white bg-dark" style="width: 180px;">
+        <ul class="nav nav-pills flex-column mb-auto text-center">
+            <li class="list-group-item list-group-item-action">게시판</li>
+            <li><a href="{{ url_for('categoryBoardLayout', category=1) }}" class="nav-link text-white">같이 공부해요</a></li>
+            <li><a href="{{ url_for('categoryBoardLayout', category=2) }}" class="nav-link text-white">공지사항</a></li>
+            <li class="nav-link text-white active">질문있어요</a></li>
+            <li><a href="{{ url_for('categoryBoardLayout', category=4) }}" class="nav-link text-white">자유 게시판</a></li>
+            <!-- 중략-->
+        </ul>
+    </div>
+    <div class="b-example-divider"></div>
+    <!-- /사이드바 -->
+
+    <div class="flex-fill">
+
+        <!-- 본문 -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1 class="text-center"> 질문있어요 </h1>
+                <br>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>날짜</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in post_list %}
+                        <tr>
+                            <td>{{ i[0] }}</td>
+                            <td><a href="{{ url_for('postView', index=i[0]) }}"> {{ i[1] }}</a></td>
+                            <td>{{ i[2] }}</td>
+                            <td>{{ i[3] }}</td>
+                            <td>{{ i[4] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /본문 -->
+
+        <!-- 페이징 -->
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                {% if chunk_start - 1 > 0 %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('categoryBoardLayout', page=chunk_start - 1, category=3) }}" tabindex="-1"
+                           aria-disabled="true">Previous</a>
+                    </li>
+                {% endif %}
+                {% for i in range(chunk_start, chunk_end + 1) %}
+                    <!-- 무조건 5페이지씩 버튼 다는 게 아니라 데이터가 존재하지 않는 페이지는 화면에 나타내지 않기 위한 조건문 -->
+                    {% if i <= last_page_num %}
+                        {% if i == page %}
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">{{ i }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ url_for('categoryBoardLayout', page=i, category=3) }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if chunk_end < last_page_num %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('categoryBoardLayout', page=chunk_end + 1, category=3) }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- /페이징 -->
+    </div>
+</div>
+</div>
