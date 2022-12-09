@@ -1,0 +1,93 @@
+{%  with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{ messages[-1] }}")
+        </script>
+    {% endif %}
+{% endwith %}
+
+<!-- login -->
+  <link rel="stylesheet" href="static/styles/login.css">
+
+  <script>
+    function show_login() {
+        let login_id = document.getElementById("login_id").value;
+        console.log(login_id)
+        let login_pw = document.getElementById("login_pw").value;
+        console.log(login_pw)
+        $.ajax({
+            type: "POST",
+            url: "/login/userinfo",
+            data: { login_id : login_id, login_pwd : login_pw} ,
+            success: function (response) {
+                alert('로그인이 성공했습니다')
+                location.replace('/')
+
+            }
+        })
+    }
+</script>
+
+{% if session %}
+    <script>
+        alert("이미 로그인 하셨습니다.")
+        {#redirect('/')#}
+        window.location.href='/'
+    </script>
+{% else %}
+<!-- login -->
+  <div class="main-container">
+      <div class="main-wrap">
+          <header></header>
+          <section class="login-input-section-wrap">
+              <div class="login-input-wrap">
+                  <input id="login_id" placeholder="Username" type="id"></input>
+              </div>
+              <div class="login-input-wrap password-wrap">
+                  <input id="login_pw" placeholder="Password" type="password"></input>
+              </div>
+              <div class="login-button-wrap">
+                  <button onclick= "show_login()"> Sign in</button>
+              </div>
+          </section>
+      </div>
+  </div>
+{% endif %}
+
+{#<!DOCTYPE html>#}
+{#<html lang="ko">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Login</title>#}
+{#    {%  with messages = get_flashed_messages() %}#}
+{#        {% if messages %}#}
+{#            <script>#}
+{#                alert("{{ messages[-1] }}")#}
+{#            </script>#}
+{#        {% endif %}#}
+{#    {% endwith %}#}
+{#</head>#}
+{#<body>#}
+{#{% if session %}#}
+{#    <script>#}
+{#        alert("이미 로그인 하셨습니다.")#}
+{#        redirect('/')#}
+{#    </script>#}
+{#{% else %}#}
+{#<center>#}
+{#    <div>#}
+{#        <h2>Login</h2>#}
+{#        <form action="/login" method="POST">#}
+{#            <input type="userid" name="userid" placeholder="Userid">#}
+{#            <input type="password" name="password" placeholder="Password">#}
+{#            <input type="id" name="login_id" placeholder="아이디">#}
+{#            <input type="password" name="login_pwd" placeholder="패스워드">#}
+{#            <input type="hidden" name="board_id" value="{{ board_id }}">#}
+{#            <br><br>#}
+{#            <input type="submit" value="로그인">#}
+{#        </form>#}
+{#    </div>#}
+{#</center>#}
+{#{% endif %}#}
+{#</body>#}
+{#</html>#}

@@ -1,0 +1,152 @@
+<script>
+    function show_signup() {
+        let signup_id = document.getElementById("signup-id").value;
+        let signup_pw = document.getElementById("signup-pw").value;
+        let signup_name = document.getElementById("signup-name").value;
+        let signup_nickname = document.getElementById("signup-nickname").value;
+        let signup_email = document.getElementById("signup-email").value;
+        $.ajax({
+            type: "POST",
+            url: "/signup/userinfo",
+            data: {
+                signup_id: signup_id,
+                signup_pw:signup_pw,
+                signup_name:signup_name,
+                signup_nickname:signup_nickname,
+                signup_email:signup_email } ,
+            success: function (response) {
+                alert ('회원가입 성공')
+                alert ('로그인 해주세요')
+                {#location.replace('/login/userinfo')#}
+                {#window.location.href='/login-layout'#}
+                location.replace('/login-layout')
+            }
+        })
+    }
+</script>
+
+<!-- signup -->
+<link rel="stylesheet" href="static/styles/signup.css">
+<style>
+    #item {
+        background-color: floralwhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div id="body_wrap">
+    <div id="body_content">
+
+        <div id="item">
+            <!--회원가입 부분-->
+            <section class="signup-wrap">
+
+                <div>
+                    <!--아이디,비번, 닉네임, 이름 -->
+
+                    <h3>아이디</h3>
+                    <span class="signup-input">
+                    <input id="signup-id" type="text"/>
+                    <span class="signup-at"></span>
+                </span>
+
+                    <h3>비밀번호</h3>
+                    <span class="signup-input">
+                    <input id="signup-pw" type="text"/>
+                    <span class="pw-lock"></span>
+                </span>
+
+                    <span class="email">
+                    <h3>이메일</h3>
+                </span>
+                <span class="signup-input">
+                    <input id="signup-email" type="text" placeholder="선택입력"></input>
+                </span>
+
+                    <div style="margin-top: 35px;">
+                        <h3>이름</h3>
+                        <span class="signup-input">
+                    <input id="signup-name" type="text"/>
+                </span>
+                    </div>
+
+                    <h3>닉네임</h3>
+                    <span class="signup-nickname">
+                    <input id="signup-nickname" type="text"/>
+                    <span class="pww-lock"></span>
+                </span>
+
+                </div>
+
+
+                <div>
+
+                    <br>
+                    <br>
+
+                    <!--가입하기-->
+                    <div class="signup-btn-wrap">
+                        <button onclick="show_signup()" id="signup-btn">가입하기</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="ko">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Register Form</title>#}
+{#    <style>#}
+{#        div {#}
+{#          justify-content: center;#}
+{#          align-items: center;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#<div>#}
+{#<div>#}
+{#    <h1>회원가입</h1>#}
+{#</div>#}
+{#<div>#}
+{#    <form method="POST" action="/register">#}
+{#        <div>#}
+{#            <label for="login_id">아이디</label>#}
+{#            <input type="text" id="login_id" placeholder="아이디" name="login_id"/>#}
+{#        </div>#}
+{#        <div>#}
+{#            <label for="user_name">이름</label>#}
+{#            <input type="text" id="user_name" placeholder="이름" name="user_name"/>#}
+{#        </div>#}
+{#        <div>#}
+{#            <label for="user_nick">닉네임</label>#}
+{#            <input type="text" id="user_nick" placeholder="닉네임" name="user_nick"/>#}
+{#        </div>#}
+{#        <div>#}
+{#            <label for="login_pwd">비밀번호</label>#}
+{#            <input type="password" id="login_pwd" placeholder="비밀번호" name="login_pwd"/>#}
+{#        </div>#}
+{#        <div>#}
+{#            <label for="re_password">비밀번호 확인</label>#}
+{#            <input type="password" id="re_loging_pwd" placeholder="비밀번호 확인" name="re_login_pwd"/>#}
+{#        </div>#}
+{#        <button type="submit">등록</button>#}
+{#    </form>#}
+{#</div>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}

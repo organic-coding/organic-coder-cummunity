@@ -2,6 +2,12 @@
     {#*{#}
     {#  font-family: noto serif kr, serif;#}
     {# }#}
+    @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    }
 
     #body_wrap {
         display: flex;
@@ -16,12 +22,18 @@
         margin-top: 50px;
         margin-bottom: 30px;
         height: 30px;
+        text-align: center;
+        font-family: 'Pretendard-Regular';
     }
 
     textarea {
         width: 600px;
+        font-family: 'Pretendard-Regular';
     }
 
+    #board-view-buttons {
+        margin-top: 30px;
+    }
 </style>
 
 <div id="body_wrap">
@@ -38,9 +50,9 @@
     </div>
     <div id="board-view-buttons">
         <a class="btn btn-outline-dark" href="{{ url_for('board_modify', board_id=post[0]) }}" role="button">수정</a>
-        <button href="{{ url_for('board_modify', board_id=post[0]) }}">수정</button>
-      <button >삭제</button>
-
+         <a class="btn btn-outline-dark" onclick="history.back()" role="button">취소</a>
+{#        <button href="{{ url_for('board_modify', board_id=post[0]) }}">수정</button>#}
+{#      <button >삭제</button>#}
     </div>
 
 </div>

@@ -24,15 +24,21 @@
             <li><a href="/mainBoard-layout">Home</a></li>
             <li><a href="/categoryBoard-layout">게시판</a></li>
             <li><a href="{{ url_for('categoryBoardLayout', category=2) }}">공지사항</a></li>
-            <li><a href="/mypage">마이 페이지</a></li>
+            {% if session['login_id'] %}
+                <li><a href="/mypage">마이 페이지</a></li>
+            {% endif %}
         </ul>
 
-
         <div class="navbar_button">
+        {% if session['login_id'] %}
+            {{ session['user_nick'] }}님
+            <a href="/logout" role="button">로그아웃</a>
+        {% else %}
             <a href="/login-layout" role="button">로그인</a>
             <a href="/signup-layout" role="button">회원가입</a>
 {#            <button>로그인</button>#}
 {#            <button>회원가입</button>#}
+        {% endif %}
         </div>
 
     </nav>

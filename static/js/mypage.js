@@ -55,7 +55,7 @@ console.log($("#login_id").val())
         },
         success: function(response) {
           alert(response.msg)
-          window.location.reload()
+          window.location.replace('mainBoard-layout')
         }
       })
     }
